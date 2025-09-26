@@ -69,7 +69,11 @@ The modeling uses:
 - **Top Page (Intersection Overview)**: connects all subsystems.  
 - **Traffic Light Control Module**: models state changes (green, yellow, red).  
 - **Queue Management Module**: handles arrivals and departures of cars, buses, and pedestrians.  
-- **Priority Detection Module**: activates priority when a bus is present.   
+- **Priority Detection Module**: activates priority when a bus is present.
+
+## 🚀 Requirements  
+
+- [CPN Tools](https://cpntools.org/) 
 
 ## Project Video  
 
