@@ -73,10 +73,10 @@ The modeling uses:
 
 ## Project Video  
 
-For more details, check out the [explanation video](https://drive.google.com/file/d/1Fq92dcAyffwg1yq9Lrnh6UqAtt3kXBVu/view?usp=sharing).  
+For more details, check out the [explanation video]().  
 
 ## 👨‍🔬 Author  
 
-This project was developed by **Mateus Pincho** as part of the evaluation for the Discrete Event Systems course, taught by Prof. Dr. Kyller Costa Gorgônio.  
+This project was developed by **João Pedro Dantas de Queiroz** and **Yan Abrantes Cavalcante** as part of the evaluation for the Discrete Event Systems course, taught by Prof. Dr. Kyller Costa Gorgônio.  
 
 ---
