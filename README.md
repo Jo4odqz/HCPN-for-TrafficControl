@@ -3,82 +3,73 @@
 <img src="sed_proj2_9s.gif" height="400"  />  
 </p>  
 
-This project models a **factory with 4 manufacturing cells** using **Colored Petri Nets (CPNs)** in the **CPN Tools** environment. The goal is to represent the product flow, the behavior of transport robots, and the processing of products by machines, while respecting constraints such as limited buffer capacity and specific production routes.  
+# 🚦 Traffic Control System with Priority for Public Transport using HCPNs  
+
+This project models an **urban intersection with four directions** using **Hierarchical Colored Petri Nets (HCPNs)** in the **CPN Tools** environment. The goal is to represent traffic flow, traffic light control, and priority mechanisms for public transport vehicles, while simulating constraints such as arrival distributions, cycle times, and sensor-based priority activation.  
 
 ## 🔧 About the System  
 
-The factory consists of:  
-- A **general input warehouse** with two product types: `item_i` and `item_j`.  
-- **Four manufacturing cells**, each responsible for processing products.  
-- An **output warehouse** where finished products are stored.  
-
-Each manufacturing cell contains:  
-- An **input buffer and an output buffer**  
-- Three **machines**  
-- Three **robots**  
+The traffic intersection consists of:  
+- **Four directions**: North, South, East, and West.  
+- **Traffic lights** for cars, buses, and pedestrians.  
+- **Dedicated lane for public transport** (e.g., buses), equipped with a **priority detection sensor**.  
+- **Vehicle queues** modeled with probabilistic arrivals (e.g., Poisson distribution).  
 
 ## 🎯 Modeling Objective  
 
 The modeling aims to:  
-- Control the product flow through the cells.  
-- Ensure correct processing of each product type according to its route.  
-- Simulate capacity constraints and resource availability.  
+- Control the flow of vehicles and pedestrians through the intersection.  
+- Implement **priority logic** for buses, extending the green light when a bus is detected.  
+- Simulate **realistic timing** for lights (green, yellow, red).  
+- Analyze system behavior under different traffic scenarios.  
 
 ## 🧠 Modeling Approach  
 
 The modeling uses:  
-- **Colored Petri Nets (CPNs)**: to represent different product types and system states.  
-- **Hierarchical pages**: to modularize the system into cells, machines, and the overall system.  
-- **Colored tokens**: represent distinct product types (`item_i` and `item_j`).  
-- **Transition guards**: define the conditions for system transitions to occur.  
+- **Hierarchical Colored Petri Nets (HCPNs)**: to modularize and scale the system.  
+- **Colored tokens**: represent different types of road users (cars, buses, pedestrians).  
+- **Transition guards and timed transitions**: to enforce conditions and simulate time delays.  
+- **Hierarchical pages**: separate modules for traffic lights, queues, and priority detection.  
 
 ## 🧩 System Components  
 
-### ✅ Products  
-- `item_i`: Type I product  
-- `item_j`: Type J product  
+### ✅ Vehicles  
+- `car`: common vehicle  
+- `bus`: public transport vehicle (activates priority)  
+- `pedestrian`: modeled as a separate token type  
 
-### ✅ Robots  
-- `Robot 1`: Transports products from the cell's input buffer to machine M1.  
-- `Robot 2`: Moves products from M1's output to either M2 (for `item_i`) or M3 (for `item_j`).  
-- `Robot 3`: Takes products from M2/M3 output to the cell's output buffer.  
+### ✅ Traffic Lights  
+- States: **Green (30s)**, **Yellow (5s)**, **Red (adjustable)**  
+- **Priority extension**: +15s green if a bus is detected.  
 
-Each robot's availability is modeled using boolean tokens (`true` = available, `false` = busy).  
+### ✅ Queues  
+- Each direction maintains a queue of arriving vehicles.  
+- Arrivals are modeled probabilistically (e.g., Poisson).  
 
-### ✅ Machines  
-- **Machine 1**: Processes both product types (I and J).  
-- **Machine 2**: Exclusive to `item_i` products.  
-- **Machine 3**: Exclusive to `item_j` products.  
-
-Each machine has:  
-- An **input buffer (capacity: 4 items)**  
-- An **output buffer (capacity: 4 items)**  
-- A **processing transition** with represented time or delay.  
-
-### ✅ Manufacturing Cells  
-Each cell contains its own instance of the above components, modeled as a **hierarchical subpage**.  
+### ✅ Priority Detection  
+- Sensor detects bus arrival in the dedicated lane.  
+- Overrides or extends the green phase for that direction.  
 
 ## 📌 System Behavior  
 
-1. **Product Request**:  
-   - The cell requests a product from the factory's input warehouse, which sends either an `item_i` or `item_j` to its input buffer.  
+1. **Vehicle and Pedestrian Arrival**  
+   - Vehicles and pedestrians arrive at the intersection according to probabilistic distributions.  
 
-2. **Internal Movement**:  
-   - Robots control the transport of products between machine input and output buffers, respecting availability.  
+2. **Traffic Light Cycle**  
+   - Normal operation follows a **30s green, 5s yellow, red** pattern.  
 
-3. **Processing**:  
-   - Products follow their specific route: M1 → M2 or M1 → M3.  
-   - After final processing, they are sent to the cell's output buffer and then to the factory's output warehouse.  
+3. **Priority Handling**  
+   - When a bus is detected, the green phase is extended by 15s or interrupts the cycle to prioritize it.  
 
-## 📁 File Structure of `smartfactory.cpn`  
+4. **Movement**  
+   - Vehicles and pedestrians cross when their respective lights are green.  
 
-- `Smart Factory Page`: Connects all cells, input warehouse, and output warehouse.  
-- `Cell Page`: Defines the components of a single cell.  
-- `Machine Page`: Defines the operation of each machine (including buffers and processing transitions).  
+## 🗂️ Hierarchical Structure  
 
-## 🚀 Requirements  
-
-- [CPN Tools](https://cpntools.org/)  
+- **Top Page (Intersection Overview)**: connects all subsystems.  
+- **Traffic Light Control Module**: models state changes (green, yellow, red).  
+- **Queue Management Module**: handles arrivals and departures of cars, buses, and pedestrians.  
+- **Priority Detection Module**: activates priority when a bus is present.   
 
 ## Project Video  
 
