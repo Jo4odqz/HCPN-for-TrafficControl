@@ -77,7 +77,7 @@ The modeling uses:
 
 ## Project Video  
 
-For more details, check out the [explanation video](https://drive.google.com/file/d/1-CCOV-DnX0TdDrp1LEqwXDohhwQKywfr/view?usp=sharing).  
+For more details, check out the [explanation video](https://drive.google.com/file/d/12YUFuYKhYAP05OE3PK4FquYIDOJ0Ykc5/view?usp=sharing).  
 
 ## 👨‍🔬 Author  
 
