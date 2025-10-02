@@ -75,9 +75,7 @@ The modeling uses:
 
 - [CPN Tools](https://cpntools.org/) 
 
-## Project Video  
 
-For more details, check out the [explanation video](https://drive.google.com/file/d/12YUFuYKhYAP05OE3PK4FquYIDOJ0Ykc5/view?usp=sharing).  
 
 ## 👨‍🔬 Author  
 
